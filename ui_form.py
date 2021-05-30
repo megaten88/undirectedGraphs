@@ -9,16 +9,11 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QHeaderView
-from graph import Graph
-
 
 
 class Ui_mainClass(object):
-    
     def setupUi(self, mainClass):
         mainClass.setObjectName("mainClass")
-        self.mainGraph= None
         mainClass.resize(1311, 611)
         self.centralwidget = QtWidgets.QWidget(mainClass)
         self.centralwidget.setObjectName("centralwidget")
@@ -26,7 +21,7 @@ class Ui_mainClass(object):
         self.sizeLabel.setEnabled(True)
         self.sizeLabel.setGeometry(QtCore.QRect(60, 80, 91, 31))
         self.sizeLabel.setObjectName("sizeLabel")
-        self.tableView = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableView = QtWidgets.QTableView(self.centralwidget)
         self.tableView.setGeometry(QtCore.QRect(20, 130, 471, 311))
         self.tableView.setObjectName("tableView")
         self.sizeInput = QtWidgets.QSpinBox(self.centralwidget)
@@ -95,8 +90,6 @@ class Ui_mainClass(object):
 
         self.retranslateUi(mainClass)
         QtCore.QMetaObject.connectSlotsByName(mainClass)
-        self.calculateButton.clicked.connect(self.show_graph)
-        self.genButton.clicked.connect(self.genTable)
 
     def retranslateUi(self, mainClass):
         _translate = QtCore.QCoreApplication.translate
@@ -109,41 +102,12 @@ class Ui_mainClass(object):
         self.label_3.setText(_translate("mainClass", "Grado del Grafo"))
         self.label_4.setText(_translate("mainClass", "Suma del Grafo"))
         self.label_5.setText(_translate("mainClass", "Grado Menor"))
-        self.graphImage.setText(_translate("mainClass", ""))
-        self.pathImage.setText(_translate("mainClass", ""))
+        self.graphImage.setText(_translate("mainClass", "TextLabel"))
+        self.pathImage.setText(_translate("mainClass", "TextLabel"))
         self.label_6.setText(_translate("mainClass", "Grafo"))
         self.label_7.setText(_translate("mainClass", "Camino"))
         self.menuProyecto.setTitle(_translate("mainClass", "Proyecto"))
 
-    def genTable(self):
-        size = int(self.sizeInput.text())
-        table_headers=[str(i) for i in range(1,size)]
-        adjMatrix = []
-        for i in range(size):
-            adjMatrix.append([0 for i in range(size)])
-
-        self.mainGraph = Graph(adjMatrix,size)
-        self.mainGraph.printAdjMatrix()
-        self.tableView.setHorizontalHeaderLabels(table_headers)
-        self.tableView.setVerticalHeaderLabels(table_headers)
-        self.tableView.setRowCount(size)
-        self.tableView.setColumnCount(size)
-        self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        for row in range(0, size):
-            for column in range(0, size):
-                relationInput = QtWidgets.QSpinBox()
-                relationInput.setMinimum(0)
-                relationInput.setMaximum(1)
-                relationInput.setObjectName(""+str(row)+"-"+str(column))
-                relationInput.setValue(self.mainGraph.getAdjMatrix()[row][column])
-                self.tableView.setCellWidget(row,column,relationInput)
-
-
-    def show_graph(self):
-        self.graphImage.setPixmap(QtGui.QPixmap("graph.png"))
-        self.pathImage.setPixmap(QtGui.QPixmap("graphPath.png"))
-
-       
 
 if __name__ == "__main__":
     import sys
@@ -153,6 +117,3 @@ if __name__ == "__main__":
     ui.setupUi(mainClass)
     mainClass.show()
     sys.exit(app.exec_())
-
-
-
