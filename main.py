@@ -1,6 +1,9 @@
 from graph import Graph
+import tkinter as tk
 
-size = int(input("Set matrix size: "))
+
+size = int(input("set size: "))
+
 adjMatrix = []
 for i in range(size):
     adjMatrix.append([0 for i in range(size)])
@@ -22,3 +25,6 @@ mainGraph.addEdge(2,2)
 mainGraph.printAdjMatrix()
 print(mainGraph.getGraphDegrees())
 mainGraph.generateGraph()
+mainGraph.drawPath([4,2,1])
+
+window.mainloop()
