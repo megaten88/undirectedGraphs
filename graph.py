@@ -1,5 +1,7 @@
+from os import remove
 import networkx as nx
 import matplotlib.pyplot as pl
+from networkx.classes import graph
 from networkx.drawing.nx_agraph import to_agraph
 
 class Graph:
@@ -20,7 +22,10 @@ class Graph:
         return (maxDegree, minDegree, sumDegree)
 
     def addEdge(self, vertex1, vertex2):
-        self.matrix[vertex1-1][vertex2-1] = 1
+        self.matrix[vertex1][vertex2] = 1
+
+    def removeEdge(self, vertex1, vertex2):
+        self.matrix[vertex1][vertex2] = 0
 
     def generateGraph(self):
         self.graph.add_nodes_from([i for i in (1, self.size)])
@@ -32,7 +37,7 @@ class Graph:
         self.graph.graph['node'] = {'style': 'filled', 'fillcolor': 'blue'}
         graphicGraph = to_agraph(self.graph)
         graphicGraph.layout("dot")
-        graphicGraph.draw("graphPath.png")
+        graphicGraph.draw("graph.png")
 
     def drawPath(self, pathArray=[]):
         arrayReturn = pathArray

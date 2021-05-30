@@ -123,7 +123,6 @@ class Ui_mainClass(object):
             adjMatrix.append([0 for i in range(size)])
 
         self.mainGraph = Graph(adjMatrix,size)
-        self.mainGraph.printAdjMatrix()
         self.tableView.setHorizontalHeaderLabels(table_headers)
         self.tableView.setVerticalHeaderLabels(table_headers)
         self.tableView.setRowCount(size)
@@ -135,13 +134,42 @@ class Ui_mainClass(object):
                 relationInput.setMinimum(0)
                 relationInput.setMaximum(1)
                 relationInput.setObjectName(""+str(row)+"-"+str(column))
+                relationInput.value()
                 relationInput.setValue(self.mainGraph.getAdjMatrix()[row][column])
                 self.tableView.setCellWidget(row,column,relationInput)
 
 
     def show_graph(self):
-        self.graphImage.setPixmap(QtGui.QPixmap("graph.png"))
-        self.pathImage.setPixmap(QtGui.QPixmap("graphPath.png"))
+        for row in range(self.tableView.rowCount()):
+            for column in range(self.tableView.rowCount()):
+                item = self.tableView.cellWidget(row,column)
+                if(int(item.value())==1):
+                    self.mainGraph.addEdge(row,column)
+                else:
+                    self.mainGraph.removeEdge(row,column)
+        self.mainGraph.generateGraph()
+        maxDegree, minDegree, sumDegree = self.mainGraph.getGraphDegrees()
+        self.degreeNumber.display(maxDegree)
+        self.degreeMinNumber.display(minDegree)
+        self.sumNumber.display(sumDegree)
+        pathValidate = self.pathInput.text()
+        if(pathValidate == "" or pathValidate==None):
+            self.pathInput.setPlaceholderText("Ingrese un camino válido")
+        else:
+            try:
+                path = [int(i) for i in pathValidate.split(",")]
+                value = self.mainGraph.drawPath(path)
+                if(value):
+                    self.graphImage.setPixmap(QtGui.QPixmap("graph.png"))
+                    self.pathImage.setPixmap(QtGui.QPixmap("graphPath.png"))
+                else:
+                    self.graphImage.setPixmap(QtGui.QPixmap("graph.png"))
+                    self.pathImage.setText("No se encontró un camino válido.")
+            except:
+                print("Not a valid path")
+
+        
+        
 
        
 
