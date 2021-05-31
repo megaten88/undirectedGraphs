@@ -20,8 +20,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>80</y>
+      <x>80</x>
+      <y>60</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -43,8 +43,8 @@
    <widget class="QSpinBox" name="sizeInput">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>80</y>
+      <x>180</x>
+      <y>60</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -59,8 +59,8 @@
    <widget class="QPushButton" name="genButton">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>80</y>
+      <x>310</x>
+      <y>60</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -72,8 +72,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>20</y>
+      <x>490</x>
+      <y>10</y>
       <width>321</width>
       <height>31</height>
      </rect>
@@ -86,7 +86,7 @@
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>500</y>
+      <y>520</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -99,7 +99,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>460</y>
+      <y>480</y>
       <width>201</width>
       <height>21</height>
      </rect>
@@ -112,7 +112,7 @@
     <property name="geometry">
      <rect>
       <x>250</x>
-      <y>460</y>
+      <y>480</y>
       <width>241</width>
       <height>25</height>
      </rect>
@@ -121,8 +121,8 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>80</y>
+      <x>580</x>
+      <y>60</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -134,8 +134,8 @@
    <widget class="QLCDNumber" name="degreeNumber">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>80</y>
+      <x>700</x>
+      <y>60</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -144,8 +144,8 @@
    <widget class="QLCDNumber" name="sumNumber">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>80</y>
+      <x>910</x>
+      <y>60</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -154,8 +154,8 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>80</y>
+      <x>790</x>
+      <y>60</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -167,8 +167,8 @@
    <widget class="QLCDNumber" name="degreeMinNumber">
     <property name="geometry">
      <rect>
-      <x>1090</x>
-      <y>80</y>
+      <x>1110</x>
+      <y>60</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -177,8 +177,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>980</x>
-      <y>80</y>
+      <x>1000</x>
+      <y>60</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -190,8 +190,8 @@
    <widget class="QLabel" name="graphImage">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>190</y>
+      <x>520</x>
+      <y>130</y>
       <width>351</width>
       <height>321</height>
      </rect>
@@ -206,8 +206,8 @@
    <widget class="QLabel" name="pathImage">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>190</y>
+      <x>880</x>
+      <y>130</y>
       <width>351</width>
       <height>321</height>
      </rect>
@@ -222,8 +222,8 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>160</y>
+      <x>610</x>
+      <y>100</y>
       <width>141</width>
       <height>17</height>
      </rect>
@@ -235,14 +235,40 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>1010</x>
-      <y>160</y>
+      <x>980</x>
+      <y>110</y>
       <width>141</width>
       <height>17</height>
      </rect>
     </property>
     <property name="text">
      <string>Camino</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>480</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>¿ Contiene Ciclos?</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="hasCycle">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>480</y>
+      <width>113</width>
+      <height>25</height>
+     </rect>
     </property>
    </widget>
   </widget>

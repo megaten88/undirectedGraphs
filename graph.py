@@ -1,6 +1,7 @@
 from os import remove
 import networkx as nx
-import matplotlib.pyplot as pl
+import matplotlib.pyplot as plt
+from networkx.algorithms.cycles import cycle_basis, simple_cycles
 from networkx.classes import graph
 from networkx.drawing.nx_agraph import to_agraph
 
@@ -9,6 +10,7 @@ class Graph:
         self.matrix = adjMatrix
         self.size = size
         self.graph = nx.MultiDiGraph()
+        
     def __len__(self):
         return self.size
 
@@ -32,8 +34,17 @@ class Graph:
         for i in range(0, self.size):
             for j in range(0, self.size):
                 if self.matrix[i][j] == 1 and not (self.graph.has_edge(i+1, j+1) or self.graph.has_edge(j+1, i+1)):
-                    self.graph.add_edge(i+1, j+1)
-        self.graph.graph['edge'] = {'arrowsize': '0', 'splines': 'curved'}
+                    self.graph.add_edge(i+1, j+1,color="black")
+                elif((self.matrix[i][j]==1) and self.graph.has_edge(i+1, j+1)):
+                    self.graph.remove_edge(i+1,j+1)
+                    self.graph.add_edge(i+1, j+1,color="black")
+                elif((self.matrix[i][j]==1) and self.graph.has_edge(j+1, i+1)):
+                    self.graph.remove_edge(j+1,i+1)
+                    self.graph.add_edge(j+1, i+1,color="black")
+                elif((self.matrix[i][j]==0) and self.graph.has_edge(i+1, j+1)):
+                    self.graph.remove_edge(i+1,j+1)
+                    
+        self.graph.graph['edge'] = {'arrowsize': '0', 'splines': 'curved', 'color': 'black'}
         self.graph.graph['node'] = {'style': 'filled', 'fillcolor': 'blue'}
         graphicGraph = to_agraph(self.graph)
         graphicGraph.layout("dot")
@@ -69,3 +80,6 @@ class Graph:
                     print(f"|{self.matrix[row][column]}|")
                 else:
                     print(f"|{self.matrix[row][column]}|", end="")
+    
+    def isCyclic(self):
+        return simple_cycles(self.graph)!= None
