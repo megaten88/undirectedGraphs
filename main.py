@@ -153,9 +153,6 @@ class Ui_mainClass(object):
                 else:
                     self.mainGraph.removeEdge(row,column)
 
-
-
-
     def show_graph(self):
         for row in range(self.tableView.rowCount()):
             for column in range(self.tableView.rowCount()):
@@ -164,7 +161,6 @@ class Ui_mainClass(object):
                     self.mainGraph.addEdge(row,column)
 
         self.mainGraph.generateGraph()
-        self.mainGraph.printAdjMatrix()
         maxDegree, minDegree, sumDegree = self.mainGraph.getGraphDegrees()
         self.degreeNumber.display(maxDegree)
         self.degreeMinNumber.display(minDegree)
