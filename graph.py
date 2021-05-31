@@ -1,7 +1,7 @@
 from os import remove
 import networkx as nx
 import matplotlib.pyplot as plt
-from networkx.algorithms.cycles import cycle_basis, simple_cycles
+from networkx.algorithms.cycles import simple_cycles
 from networkx.classes import graph
 from networkx.drawing.nx_agraph import to_agraph
 
@@ -16,19 +16,30 @@ class Graph:
 
     def getGraphDegrees(self):
         degreeArray = []
+        totalDegree = []        
+        visited = []                                                                                                                                                                                                                        
         for i in range(0, self.size):
             degreeArray.append(sum(self.matrix[i]))
+        for i in range(0,self.size):
+            add = 0
+            for j in range(0,self.size):
+                if(self.matrix[i][j]==1 and (f"{i}-{j}" not in visited and f"{j}-{i}" not in visited)):
+                    visited.append(f"{i}-{j}")
+                    add = add+1
+            totalDegree.append(add)
         maxDegree = max(degreeArray)
         minDegree = min(degreeArray)
-        sumDegree = sum(degreeArray)
+        sumDegree = sum(totalDegree)
         return (maxDegree, minDegree, sumDegree)
 
     def addEdge(self, vertex1, vertex2):
         self.matrix[vertex1][vertex2] = 1
+        self.matrix[vertex2][vertex1] = 1
 
     def removeEdge(self, vertex1, vertex2):
         self.matrix[vertex1][vertex2] = 0
-
+        self.matrix[vertex2][vertex1] = 0
+ 
     def generateGraph(self):
         self.graph.add_nodes_from([i for i in (1, self.size)])
         for i in range(0, self.size):

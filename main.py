@@ -141,7 +141,19 @@ class Ui_mainClass(object):
                 relationInput.setObjectName(""+str(row)+"-"+str(column))
                 relationInput.value()
                 relationInput.setValue(self.mainGraph.getAdjMatrix()[row][column])
+                relationInput.valueChanged.connect(self.valueChange)
                 self.tableView.setCellWidget(row,column,relationInput)
+
+    def valueChange(self):
+        for row in range(self.tableView.rowCount()):
+            for column in range(self.tableView.rowCount()):
+                item = self.tableView.cellWidget(row,column)
+                if(int(item.value())==1):
+                    self.mainGraph.addEdge(row,column)
+                else:
+                    self.mainGraph.removeEdge(row,column)
+
+
 
 
     def show_graph(self):
@@ -150,8 +162,6 @@ class Ui_mainClass(object):
                 item = self.tableView.cellWidget(row,column)
                 if(int(item.value())==1):
                     self.mainGraph.addEdge(row,column)
-                else:
-                    self.mainGraph.removeEdge(row,column)
 
         self.mainGraph.generateGraph()
         self.mainGraph.printAdjMatrix()
