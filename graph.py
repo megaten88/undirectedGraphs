@@ -93,4 +93,10 @@ class Graph:
                     print(f"|{self.matrix[row][column]}|", end="")
     
     def isCyclic(self):
-        return simple_cycles(self.graph)!= None
+        cycles = []
+        try:
+            cycles = nx.find_cycle(self.graph,orientation="original")
+        except:
+            cycles = []
+
+        return len(cycles) >=1
