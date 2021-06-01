@@ -180,6 +180,10 @@ class Ui_mainClass(object):
                     else:
                         self.hasCycle.setText("No")
                 else:
+                    if(self.mainGraph.isCyclic()):
+                        self.hasCycle.setText("Sí") 
+                    else:
+                        self.hasCycle.setText("No")
                     self.graphImage.setPixmap(QtGui.QPixmap("graph.png"))
                     self.pathImage.setText("No se encontró un camino válido.")
             except:
