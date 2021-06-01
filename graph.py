@@ -95,8 +95,8 @@ class Graph:
     def isCyclic(self):
         cycles = []
         try:
-            cycles = nx.find_cycle(self.graph,orientation="original")
+            cycles = nx.find_cycle(self.graph,orientation="ignore")
         except:
             cycles = []
-
+        print(cycles)
         return len(cycles) >=1
